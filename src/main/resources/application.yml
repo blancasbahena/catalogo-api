@@ -40,7 +40,7 @@ logging:
 api:
   access:
     user: us3r-cat4log
-    password: b77f5aaaf722fc8c3eac9afde4412e5beefa7668c351c59387976d5434f896e0NRv3ipOHStBcPQJlrV0tvQ==
+    password: cGFzJGM0dDIyIQ==
   datasource:
     tel:
       prefijo:  '72'
