@@ -45,4 +45,14 @@ public class ProductoController {
 		
 	}
 
+	@GetMapping(value = "/recargaLista", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ResponseVO> recargarLista(@RequestHeader("Authorization") String token){
+
+		log.info("[GET /recargaLista] | INICIO -  {} ",JWUtil.extractUsername(token.substring(7)));
+		Respuesta respuesta = productoService.recargarLista();
+		log.info("[GET /recargaLista] | FIN");
+		return new ResponseEntity<ResponseVO>(respuesta, respuesta.getEstado());
+	}
+	
+	
 }

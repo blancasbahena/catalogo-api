@@ -19,9 +19,6 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 	@Autowired
 	private UserDetailsServices myUserDatails;
 
-	@Autowired
-	private JWUtil jWUtil;
-
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
@@ -30,7 +27,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 		String jwt = null;
 		if (authorizer != null && authorizer.startsWith("Bearer ")) {
 			jwt = authorizer.substring(7);
-			username = jWUtil.extractUsername(jwt);
+			username = JWUtil.extractUsername(jwt);
 		}
 		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 			UserDetails userDetails = this.myUserDatails.loadUserByUsername(username);

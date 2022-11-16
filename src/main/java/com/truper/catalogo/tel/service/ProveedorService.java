@@ -10,4 +10,6 @@ public interface ProveedorService {
 	
 	public Respuesta getProveedorById(String idProveedor);
 	
+	public Respuesta recargarLista();
+	
 }

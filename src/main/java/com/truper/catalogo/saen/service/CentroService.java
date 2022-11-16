@@ -6,4 +6,8 @@ public interface CentroService {
 
 	public Respuesta getCentros();
 	
+	public Respuesta getCentroById(String idCentro);
+	
+	public Respuesta recargarLista();
+	
 }

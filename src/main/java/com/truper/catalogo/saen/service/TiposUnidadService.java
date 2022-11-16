@@ -6,4 +6,8 @@ public interface TiposUnidadService {
 
 	Respuesta getTiposDeUnidad();
 	
+	Respuesta getTipoUnidadById(Integer idTipoUnidad);
+	
+	Respuesta recargarLista();
+	
 }

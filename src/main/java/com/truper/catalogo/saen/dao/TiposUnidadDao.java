@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.truper.saen.commons.entities.catTipoDeUnidad;
+import com.truper.saen.commons.entities.CatTipoDeUnidad;
 
-public interface TiposUnidadDao extends JpaRepository<catTipoDeUnidad, Integer>{
+public interface TiposUnidadDao extends JpaRepository<CatTipoDeUnidad, Integer>{
 
-	List<catTipoDeUnidad> findByActivoIsTrue();
+	List<CatTipoDeUnidad> findByActivoIsTrue();
 	
 }

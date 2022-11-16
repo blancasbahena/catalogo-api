@@ -1,10 +1,6 @@
 package com.truper.catalogo.configuration;
 
 import java.util.Date;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
@@ -47,6 +43,7 @@ public class JWUtil {
 		return createToken(claims, userDatails.getUsername());
 	}
 
+	@SuppressWarnings("deprecation")
 	public static String createToken(Map<String, Object> claims, String subject) {
 
 		return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
@@ -55,7 +52,6 @@ public class JWUtil {
 	}
 
 	public static Boolean validateToken(String token) {
-		final String userName = extractUsername(token);
 		return (!istokenExpired(token));
 	}
 

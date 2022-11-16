@@ -8,4 +8,6 @@ public interface ProductoService {
 	
 	Respuesta getProductoById(String idProducto);
 	
+	Respuesta recargarLista();
+	
 }
