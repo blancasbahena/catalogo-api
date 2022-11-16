@@ -1,0 +1,83 @@
+server:
+  port: 7112
+  max-http-header-size: 10MB
+  servlet:
+    context-path: /catalogo
+spring:
+  application:
+    name: catalogo-api
+  mvc:
+    servlet:
+      path: /api/v1
+  profiles:
+    active: dev
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServer2012Dialect
+    hibernate:
+      ddl-auto: none
+  datasource:
+    driver:
+      class: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    jdbcUrl: jdbc:sqlserver://;serverName=172.20.5.157;databaseName=SAE_NACIONALES;encrypt=false;trustServerCertificate=false;
+    url: jdbc:sqlserver://;serverName=172.20.5.157;databaseName=SAE_NACIONALES;encrypt=false;trustServerCertificate=false;
+    password: 
+    username: 
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServer2012Dialect
+        format_sql: true
+        show-sql: true
+logging:
+  level:
+    com: DEBUG
+
+api:
+  access:
+    user: us3r-cat4log
+    password: b77f5aaaf722fc8c3eac9afde4412e5beefa7668c351c59387976d5434f896e0NRv3ipOHStBcPQJlrV0tvQ==
+  datasource:
+    tel:
+      prefijo:  '72'
+      configuration:
+        hikari:
+          maximum-pool-size: 8
+      driver:
+        class: com.microsoft.sqlserver.jdbc.SQLServerDriver
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServer2012Dialect
+        enable_lazy_load_no_trans: true
+        format_sql: true
+        show_sql: true
+      jdbcUrl: jdbc:sqlserver://MSSQLCDEV.truper.com.mx\DEV;databaseName=tel
+      package: 
+        entities: com.truper.catalogo.tel.entities
+        base: com.truper.catalogo.tel
+      password: t3lw3b2019
+      url: jdbc:sqlserver://172.18.2.14:1433;databaseName=tel
+      username: telweb
+    sae:
+      configuracion:
+        hikari:
+          maximun-pool-size: 8
+      driver:
+        class: com.microsoft.sqlserver.jdbc.SQLServerDriver
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServer2012Dialect
+        enable_lazy_load_no_trans: true
+        format_sql: true
+        show_sql: true
+      jdbcUrl: jdbc:sqlserver://;serverName=172.20.5.157;databaseName=SAE_NACIONALES;encrypt=false;trustServerCertificate=false;
+      package: 
+        entities: com.truper.saen.commons
+        base: com.truper.catalogo.saen
+      password: truper2022
+      url: jdbc:sqlserver://;serverName=172.20.5.157;databaseName=SAE_NACIONALES;encrypt=false;trustServerCertificate=false;
+      username: APP_SAEN
+  crones:
+    listaCentros: '0 0 2 * * ?' 
