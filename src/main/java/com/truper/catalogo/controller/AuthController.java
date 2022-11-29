@@ -23,6 +23,9 @@ import com.truper.catalogo.configuration.UserDetailsServices;
 import com.truper.catalogo.enums.Mensajes;
 import com.truper.saen.commons.dto.ResponseVO;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -37,7 +40,9 @@ public class AuthController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	
-
+	@ApiOperation(value = "CheckHealth para verificacion del status del API",
+			response = Respuesta.class,
+			notes = "Regresa un estatus OK en la consulta para la verificación del servicio")
 	@GetMapping(value =  "/status", produces = MediaType.APPLICATION_JSON_VALUE  )
 	public ResponseEntity<ResponseVO> getStatusAPI(){
 		log.info("[GET /status] | INICIO");
@@ -48,6 +53,13 @@ public class AuthController {
 		
 	}
 	
+	@ApiOperation(value = "Generacion de Token para consumo del catálogo",
+			response = Respuesta.class,
+			notes = "Regresa token para el consumo de los servicios")
+	@ApiResponses( value = {
+			@ApiResponse(code = 200, message = "Consulta exitosa",response = Respuesta.class),
+			@ApiResponse(code = 404, message = "No se encontraron registros para el Folio consultado")
+	})
 	@PostMapping(value = "/authenticate",produces = MediaType.APPLICATION_JSON_VALUE )
 	public ResponseEntity<ResponseVO> createAuthenticationToken(@RequestBody User authenticationRequest) throws Exception {
 		log.info("[POST /authenticate] | INICIO -  {}",authenticationRequest.getUsername());

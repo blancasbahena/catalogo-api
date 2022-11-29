@@ -1,5 +1,6 @@
 package com.truper.catalogo.saen.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.truper.catalogo.commons.Respuesta;
+import com.truper.catalogo.dto.CentroDTO;
 import com.truper.catalogo.saen.dao.CentroDaoCache;
 import com.truper.catalogo.saen.service.CentroService;
 import com.truper.saen.commons.entities.CatCentro;
@@ -30,10 +32,13 @@ public class CentroServiceImpl implements CentroService{
 		Date inicio =  new Date();
 		log.info("[INICIO - SELECT] | saen.CatCentros  ");
 		List<CatCentro> centros = centroDao.findAllCentros();
+		
+		List<CentroDTO> centrosDTO = this.catCentroToCentroDTO(centros);
+		
 		Date fin =  new Date();
 		log.info("[FIN - SELECT] | saen.CatCentros - {}" ,Utils.calcTiempoTranscurridoEnSegundos(inicio, fin));
 		
-		respuesta = new Respuesta(Mensajes.TIPO_EXITO.getMensaje(),Mensajes.MSG_EXITO.getMensaje(),"centros", centros);
+		respuesta = new Respuesta(Mensajes.TIPO_EXITO.getMensaje(),Mensajes.MSG_EXITO.getMensaje(),"centros", centrosDTO);
 		
 		respuesta.setEstado(HttpStatus.OK);
 		
@@ -46,11 +51,20 @@ public class CentroServiceImpl implements CentroService{
 		Date inicio =  new Date();
 		log.info("[INICIO - SELECT] | saen.CatCentros  ");
 		CatCentro centro = centroDao.findCentroById(idCentro);
+		
 		if( centro == null ) {
-			respuesta = new Respuesta(Mensajes.TIPO_WARNING.getMensaje(), Mensajes.MSG_NODATA.getMensaje(), "centro", centro);
+						
+			respuesta = new Respuesta(Mensajes.TIPO_WARNING.getMensaje(), Mensajes.MSG_NODATA.getMensaje(), null, null);
 			respuesta.setEstado(HttpStatus.NOT_FOUND);			
 			return respuesta;
 		}		
+		
+		CentroDTO centroDTO = new CentroDTO();
+		
+		centroDTO.setCentro(centro.getCentro());
+		centroDTO.setIdCentro(centro.getIdCentro());
+		centroDTO.setUbicacion(centro.getUbicacion());
+		
 		Date fin =  new Date();
 		log.info("[FIN - SELECT] | saen.CatCentros - {}" ,Utils.calcTiempoTranscurridoEnSegundos(inicio, fin));
 		
@@ -75,4 +89,25 @@ public class CentroServiceImpl implements CentroService{
 		return respuesta;
 	}
 
+	
+	private List<CentroDTO> catCentroToCentroDTO(List<CatCentro> centros) {
+		
+		List<CentroDTO> centrosDto = new ArrayList<>();
+		
+		for (CatCentro centro : centros) {
+			
+			CentroDTO centroDTO = new CentroDTO();
+			
+			centroDTO.setCentro(centro.getCentro());
+			centroDTO.setIdCentro(centro.getIdCentro());
+			centroDTO.setUbicacion(centro.getUbicacion());
+			
+			centrosDto.add(centroDTO);
+			
+		}
+		
+		return centrosDto;
+		
+	}
+	
 }

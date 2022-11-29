@@ -23,7 +23,7 @@ public class SwaggerConfig
 	{ 
         return new Docket(DocumentationType.SWAGGER_2)  
           .select()                                  
-          .apis(RequestHandlerSelectors.basePackage("com.truper.saen.controller"))
+          .apis(RequestHandlerSelectors.basePackage("com.truper.catalogo.controller"))
           .paths(PathSelectors.any())  
           .build()
           .securitySchemes(Collections.singletonList(new ApiKey("Bearer", "Authorization", "header")))
@@ -33,8 +33,8 @@ public class SwaggerConfig
 	private ApiInfo apiInfo() 
 	{
 		return new ApiInfoBuilder()
-			.title("Archetype-Dechiper Documentation")
-			.description("Archetype-Srping-Boot-Dechiper API´s Documentation for systems integrations through Truper")
+			.title("Catalog API")
+			.description("Catalogos de consulta y actualizacion para RET y LATAM Trading")
 			.version("1.0.0")
 			.licenseUrl("LICENSE URL")
 			.build();	
