@@ -12,43 +12,43 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.truper.catalogo.commons.Respuesta;
 import com.truper.catalogo.configuration.JWUtil;
-import com.truper.catalogo.saen.service.CentroService;
+import com.truper.catalogo.saen.service.SucursalesService;
 import com.truper.saen.commons.dto.ResponseVO;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/centros")
 @CrossOrigin(value = "*")
-public class CentrosController {
-
+@RequestMapping(value = "/sucursales")
+public class SucursalesController {
+	
 	@Autowired
-	private CentroService centroService;
+	private SucursalesService sucursalService;
 	
 	@GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseVO> getTiposDeUnidad(@RequestHeader("Authorization") String token){
-		log.info("[GET /centros] | INICIO -  {} ",JWUtil.extractUsername(token.substring(7)));
-		Respuesta resp =  centroService.getCentros();
-		log.info("[GET /centros] | FIN");
+		log.info("[GET /sucursales] | INICIO -  {} ",JWUtil.extractUsername(token.substring(7)));
+		Respuesta resp =  sucursalService.getSucursales();
+		log.info("[GET /sucursales] | FIN");
 		return new ResponseEntity<ResponseVO>(resp, resp.getEstado());
 	}
 	
-	@GetMapping(value = "/{idCentro}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseVO> getTiposDeUnidadById(@RequestHeader("Authorization") String token,@PathVariable String idCentro){
-		log.info("[GET /centros/{}] | INICIO -  {} ",idCentro,JWUtil.extractUsername(token.substring(7)));
-		Respuesta resp =  centroService.getCentroById(idCentro);
-		log.info("[GET /centros/] | FIN");
+	
+	@GetMapping(value = "/{idSucursal}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ResponseVO> getTiposDeUnidadById(@RequestHeader("Authorization") String token,@PathVariable Integer idSucursal){
+		log.info("[GET /sucursales/{}] | INICIO -  {} ",idSucursal,JWUtil.extractUsername(token.substring(7)));
+		Respuesta resp =  sucursalService.getSucursalById(idSucursal);
+		log.info("[GET /sucursales/] | FIN");
 		return new ResponseEntity<ResponseVO>(resp, resp.getEstado());
 	}
 	
 	@GetMapping(value = "/recargaLista", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseVO> recargarLista(@RequestHeader("Authorization") String token){
-		log.info("[GET /centros/recargaLista] | INICIO -  {} ",JWUtil.extractUsername(token.substring(7)));
-		Respuesta resp =  centroService.recargarLista();
-		log.info("[GET /centros/recargaLista] | FIN");
+		log.info("[GET /sucursales/recargaLista] | INICIO -  {} ",JWUtil.extractUsername(token.substring(7)));
+		Respuesta resp =  sucursalService.recargarLista();
+		log.info("[GET /sucursales/recargaLista] | FIN");
 		return new ResponseEntity<ResponseVO>(resp, resp.getEstado());
 	}
-	
-	
+
 }
