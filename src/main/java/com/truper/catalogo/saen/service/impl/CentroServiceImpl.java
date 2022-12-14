@@ -44,6 +44,7 @@ public class CentroServiceImpl implements CentroService{
 		
 		return respuesta;
 	}
+	
 
 	@Override
 	public Respuesta getCentroById(String idCentro) {
@@ -61,9 +62,8 @@ public class CentroServiceImpl implements CentroService{
 		
 		CentroDTO centroDTO = new CentroDTO();
 		
-		centroDTO.setCentro(centro.getCentro());
 		centroDTO.setIdCentro(centro.getIdCentro());
-		centroDTO.setUbicacion(centro.getUbicacion());
+		centroDTO.setDescripcion(centro.getDescripcion());
 		
 		Date fin =  new Date();
 		log.info("[FIN - SELECT] | saen.CatCentros - {}" ,Utils.calcTiempoTranscurridoEnSegundos(inicio, fin));
@@ -97,10 +97,8 @@ public class CentroServiceImpl implements CentroService{
 		for (CatCentro centro : centros) {
 			
 			CentroDTO centroDTO = new CentroDTO();
-			
-			centroDTO.setCentro(centro.getCentro());
 			centroDTO.setIdCentro(centro.getIdCentro());
-			centroDTO.setUbicacion(centro.getUbicacion());
+			centroDTO.setDescripcion(centro.getDescripcion());
 			
 			centrosDto.add(centroDTO);
 			

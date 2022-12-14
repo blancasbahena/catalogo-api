@@ -21,7 +21,14 @@ public class CentroDaoCache {
 	@Cacheable(cacheNames = "catCentros")
 	public List<CatCentro> findAllCentros(){
 		
-		return centroDao.findByActivoIsTrue();
+		return centroDao.findByTipoAndActivoIsTrue("C");
+		
+	}
+	
+	@Cacheable(cacheNames = "catSucursales")
+	public List<CatCentro> findAllSucursales(){
+		
+		return centroDao.findByTipoAndActivoIsTrue("S");
 		
 	}
 	
@@ -32,9 +39,18 @@ public class CentroDaoCache {
 		
 	}
 	
+	@Cacheable(cacheNames = "catSucursales", key = "#IdCentro")
+	public CatCentro findSucursalById(String IdCentro){
+		
+		return centroDao.findById(IdCentro).orElse(null);
+		
+	}
+	
 	public void recargarLista() {
 		cacheManager.getCache("catCentros").clear();
+		cacheManager.getCache("catSucursales").clear();
 		this.findAllCentros();
+		this.findAllSucursales();
 		
 	}
 	
