@@ -36,7 +36,7 @@ public class SucursalesController {
 	
 	
 	@GetMapping(value = "/{idSucursal}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseVO> getTiposDeUnidadById(@RequestHeader("Authorization") String token,@PathVariable Integer idSucursal){
+	public ResponseEntity<ResponseVO> getTiposDeUnidadById(@RequestHeader("Authorization") String token,@PathVariable String idSucursal){
 		log.info("[GET /sucursales/{}] | INICIO -  {} ",idSucursal,JWUtil.extractUsername(token.substring(7)));
 		Respuesta resp =  sucursalService.getSucursalById(idSucursal);
 		log.info("[GET /sucursales/] | FIN");

@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 
 import com.truper.catalogo.commons.Respuesta;
 import com.truper.catalogo.dto.SucursalDTO;
-import com.truper.catalogo.saen.dao.SucursalDaoCache;
+import com.truper.catalogo.saen.dao.CentroDaoCache;
 import com.truper.catalogo.saen.service.SucursalesService;
-import com.truper.saen.commons.entities.Sucursal;
+import com.truper.saen.commons.entities.CatCentro;
 import com.truper.saen.commons.enums.Mensajes;
 import com.truper.saen.commons.utils.Utils;
 
@@ -23,14 +23,14 @@ import lombok.extern.slf4j.Slf4j;
 public class SucursalServiceImpl implements SucursalesService{
 
 	@Autowired
-	private SucursalDaoCache sucursalDao;
+	private CentroDaoCache sucursalDao;
 	
 	@Override
 	public Respuesta getSucursales() {
 		Respuesta respuesta;
 		Date inicio =  new Date();
 		log.info("[INICIO - SELECT] | saen.catSucursales  ");
-		List<Sucursal> sucursales = sucursalDao.findAllSucursales();
+		List<CatCentro> sucursales = sucursalDao.findAllSucursales();
 		List<SucursalDTO> sucursalesDTO = this.sucursalToSucursalDTO(sucursales);
 		Date fin =  new Date();
 		log.info("[FIN - SELECT] | saen.catSucursales - {}" ,Utils.calcTiempoTranscurridoEnSegundos(inicio, fin));
@@ -41,11 +41,11 @@ public class SucursalServiceImpl implements SucursalesService{
 	}
 
 	@Override
-	public Respuesta getSucursalById(Integer idSucursal) {
+	public Respuesta getSucursalById(String idSucursal) {
 		Respuesta respuesta;
 		Date inicio =  new Date();
 		log.info("[INICIO - SELECT] | saen.catSucursales  ");
-		Sucursal sucursal = sucursalDao.findSucursalById(idSucursal);
+		CatCentro sucursal = sucursalDao.findSucursalById(idSucursal);
 		Date fin =  new Date();
 		log.info("[FIN - SELECT] | saen.catSucursales - {}" ,Utils.calcTiempoTranscurridoEnSegundos(inicio, fin));
 		
@@ -56,9 +56,9 @@ public class SucursalServiceImpl implements SucursalesService{
 		}
 
 		SucursalDTO sucDto = new SucursalDTO();
-		sucDto.setIdSucursal(sucursal.getIdSucursal());
-		sucDto.setNombre(sucursal.getNombre());
-		sucDto.setUbicacion(sucursal.getUbicacion());
+		sucDto.setIdSucursal(sucursal.getIdCentro());
+		sucDto.setDescripcion(sucursal.getDescripcion());
+
 		respuesta = new Respuesta(Mensajes.TIPO_EXITO.getMensaje(),Mensajes.MSG_EXITO.getMensaje(),"sucursal", sucDto);
 		respuesta.setEstado(HttpStatus.OK);
 		
@@ -79,16 +79,15 @@ public class SucursalServiceImpl implements SucursalesService{
 		return respuesta;
 	}
 	
-	private List<SucursalDTO> sucursalToSucursalDTO( List<Sucursal> sucursales){
+	private List<SucursalDTO> sucursalToSucursalDTO( List<CatCentro> sucursales){
 		
 		List<SucursalDTO> sucursalesDto = new ArrayList<>();
 		
-		for (Sucursal sucursal : sucursales) {
+		for (CatCentro sucursal : sucursales) {
 			
 			SucursalDTO sucDto = new SucursalDTO();
-			sucDto.setIdSucursal(sucursal.getIdSucursal());
-			sucDto.setNombre(sucursal.getNombre());
-			sucDto.setUbicacion(sucursal.getUbicacion());
+			sucDto.setIdSucursal(sucursal.getIdCentro());
+			sucDto.setDescripcion(sucursal.getIdCentro());
 			
 			sucursalesDto.add(sucDto);
 			
