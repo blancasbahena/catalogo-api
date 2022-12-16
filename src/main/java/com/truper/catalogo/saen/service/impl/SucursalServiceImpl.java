@@ -87,7 +87,7 @@ public class SucursalServiceImpl implements SucursalesService{
 			
 			SucursalDTO sucDto = new SucursalDTO();
 			sucDto.setIdSucursal(sucursal.getIdCentro());
-			sucDto.setDescripcion(sucursal.getIdCentro());
+			sucDto.setDescripcion(sucursal.getDescripcion());
 			
 			sucursalesDto.add(sucDto);
 			
