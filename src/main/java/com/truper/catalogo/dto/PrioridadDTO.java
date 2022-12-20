@@ -9,10 +9,12 @@ public class PrioridadDTO {
 	
 	private Integer idPrioridad;
 	private String descripcion;
+	private String color;
 	
 	public PrioridadDTO(CatPrioridades e) {
 		this.idPrioridad= e.getIdPrioridad();
 		this.descripcion= e.getDescripcion();
+		this.color = e.getColor();
 	}
 
 }
