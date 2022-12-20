@@ -14,7 +14,7 @@ public class PrioridadDTO {
 	public PrioridadDTO(CatPrioridades e) {
 		this.idPrioridad= e.getIdPrioridad();
 		this.descripcion= e.getDescripcion();
-		this.color= e.getColor();
+		this.color = e.getColor();
 	}
 
 }
