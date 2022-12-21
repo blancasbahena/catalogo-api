@@ -9,5 +9,7 @@ import com.truper.saen.commons.entities.CatCentro;
 public interface CentroDao extends JpaRepository<CatCentro, String>{
 
 	 List<CatCentro> findByActivoIsTrue();
+	 
+	 List<CatCentro> findByTipoAndActivoIsTrue(String tipo);
 	
 }
