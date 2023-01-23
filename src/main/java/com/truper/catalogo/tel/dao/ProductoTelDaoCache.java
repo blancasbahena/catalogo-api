@@ -28,6 +28,11 @@ public class ProductoTelDaoCache {
 		return productoDao.findById(id).orElse(null);
 	}
 	
+	@Cacheable(cacheNames = "listaProductos")
+	public List<ProductoTel> getListaProductos( List<String> claves ){
+		return productoDao.findByCodigoIn(claves);
+	}
+	
 	public void recargarLista() {
 		cacheManager.getCache("listaProductos").clear();
 		this.findAllProductos();

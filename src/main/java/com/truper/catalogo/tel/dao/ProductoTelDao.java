@@ -9,5 +9,7 @@ import com.truper.catalogo.tel.entities.ProductoTel;
 public interface ProductoTelDao  extends JpaRepository<ProductoTel, String>{
 	
 	List<ProductoTel> findByRefaccionIsFalseAndObsoletoIsFalseOrProductoOEMIsTrue(); 
+	
+	List<ProductoTel> findByCodigoIn(List<String> clave);
 
 }
