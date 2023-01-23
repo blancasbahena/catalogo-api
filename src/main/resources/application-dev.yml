@@ -41,4 +41,4 @@ api:
       url: jdbc:sqlserver://;serverName=172.20.5.157;databaseName=SAE_NACIONALES;encrypt=false;trustServerCertificate=false;
       username: APP_SAEN
   crones:
-    listaCentros: '0 0 2 * * ?' 
+    listaCentros: '0 0 2 * * ?'

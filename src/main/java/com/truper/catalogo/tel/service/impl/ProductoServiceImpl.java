@@ -11,6 +11,7 @@ import com.truper.catalogo.commons.Respuesta;
 import com.truper.catalogo.tel.dao.ProductoTelDaoCache;
 import com.truper.catalogo.tel.entities.ProductoTel;
 import com.truper.catalogo.tel.service.ProductoService;
+import com.truper.saen.commons.dto.ListProductosDto;
 import com.truper.saen.commons.enums.Mensajes;
 import com.truper.saen.commons.utils.Utils;
 
@@ -68,6 +69,20 @@ public class ProductoServiceImpl implements ProductoService{
 		log.info("[FIN - SELECT] | Tel.Productos - {}" ,Utils.calcTiempoTranscurridoEnSegundos(inicio, fin));
 		
 		respuesta = new Respuesta(Mensajes.TIPO_EXITO.getMensaje(), Mensajes.MSG_EXITO.getMensaje(), "Status", "OK");
+		respuesta.setEstado(HttpStatus.OK);
+		return respuesta;
+	}
+
+	@Override
+	public Respuesta listarProductos(ListProductosDto listaDto) {
+		Respuesta respuesta = new Respuesta();
+		Date inicio =  new Date();
+		log.info("[INICIO - SELECT] | Tel.Productos  ");
+		List<ProductoTel> productos = productoDao.getListaProductos(listaDto.getListaProductos());
+		Date fin =  new Date();
+		log.info("[FIN - SELECT] | Tel.Productos - {}" ,Utils.calcTiempoTranscurridoEnSegundos(inicio, fin));
+		
+		respuesta = new Respuesta(Mensajes.TIPO_EXITO.getMensaje(), Mensajes.MSG_EXITO.getMensaje(), "productos",productos );
 		respuesta.setEstado(HttpStatus.OK);
 		return respuesta;
 	}
