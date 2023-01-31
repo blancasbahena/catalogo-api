@@ -41,7 +41,7 @@ public class PlaneadorTel {
     private String idGerente;   
     
     @OneToOne
-	@JoinColumn(name = "idusr")
+	@JoinColumn(name = "realUser",insertable=false, updatable=false)
 	private UsuariosTel user;
     
 }
