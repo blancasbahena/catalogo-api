@@ -13,8 +13,8 @@ api:
       hibernate:
         dialect: org.hibernate.dialect.SQLServer2012Dialect
         enable_lazy_load_no_trans: true
-        format_sql: true
-        show_sql: true
+        format_sql: false
+        show_sql: false
       jdbcUrl: jdbc:sqlserver://MSSQLCDEV.truper.com.mx\DEV;databaseName=tel
       package: 
         entities: com.truper.catalogo.tel.entities
@@ -31,8 +31,8 @@ api:
       hibernate:
         dialect: org.hibernate.dialect.SQLServer2012Dialect
         enable_lazy_load_no_trans: true
-        format_sql: true
-        show_sql: true
+        format_sql: false
+        show_sql: false
       jdbcUrl: jdbc:sqlserver://;serverName=172.20.5.157;databaseName=SAE_NACIONALES;encrypt=false;trustServerCertificate=false;
       package: 
         entities: com.truper.saen.commons
@@ -42,3 +42,16 @@ api:
       username: APP_SAEN
   crones:
     listaCentros: '0 0 2 * * ?' 
+logging:
+  level:
+    org:
+      hibernate: 
+        SQL:  INFO
+        type:
+          descriptor:
+            sql:
+              BasicBinder: INFO
+      springframework: INFO
+  config: classpath:logback-prod.xml
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss:SSS} %t %c{2}:%L - %m%n'

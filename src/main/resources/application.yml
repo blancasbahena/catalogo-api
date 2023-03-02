@@ -21,16 +21,3 @@ spring:
         format_sql: true
         show-sql: true
       
-logging:
-  level:
-    org:
-      hibernate: 
-        SQL:  DEBUG
-        type:
-          descriptor:
-            sql:
-              BasicBinder: TRACE
-      springframework: INFO
-  config: classpath:logback-dev.xml
-  pattern:
-    console: '%d{yyyy-MM-dd HH:mm:ss:SSS} %t %c{2}:%L - %m%n'

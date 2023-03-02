@@ -15,7 +15,7 @@
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<rollingPolicy
 			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${destination}/sae-base.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<fileNamePattern>${destination}/catalog-api.%d{yyyy-MM-dd}.log</fileNamePattern>
 		</rollingPolicy>
 		<encoder>
 			<pattern>${principal-pattern}</pattern>
